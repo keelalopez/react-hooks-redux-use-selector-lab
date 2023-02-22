@@ -1,14 +1,26 @@
 import React from "react";
-// add any needed imports here
+// IMPORT THE HOOK
+import { useSelector } from "react-redux";
 
 function Users() {
+  // CALL HOOK INSIDE COMPONENT AND SAVE
+  const storeState = useSelector (state => state)
+
+  // SAVES USERS ARRAY USING THE STORESTATE VARIABLE
+  const users = storeState.users
+
+  // COUNTS USERS
+  const userCount = useSelector((state) => state.users.length);
+  
   return (
     <div>
+
       <ul>
-        Users!
-        {/* Write code here that displays the usernames of all users in the Redux store */}
-        {/* In addition, display the total number of users curently in the store */}
+        {users.map((u) => (
+          <li key={u.username}>{u.username}</li>
+        ))}
       </ul>
+      Total Users: {userCount}
     </div>
   );
 }
